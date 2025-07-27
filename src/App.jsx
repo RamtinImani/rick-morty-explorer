@@ -1,7 +1,12 @@
 import "./App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
-  return <div>rick and morty</div>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 }
 
 export default App;
