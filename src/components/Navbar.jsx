@@ -7,7 +7,7 @@ function Navbar() {
         <a href="#">🎭 Rick & Morty</a>
       </div>
 
-      <input type="search" className="text-field" placeholder="Search" />
+      <input type="search" className="text-field" name="search" placeholder="Search" />
 
       <div className="navbar__results">Found X Characters</div>
 

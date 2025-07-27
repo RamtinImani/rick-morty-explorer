@@ -103,6 +103,7 @@
   grid-column: 2/3;
   grid-row: 2/3;
   align-self: center;
+  padding-left: 0.5rem;
 }
 
 .list__item .icon {
@@ -171,6 +172,7 @@
 .character-detail__info .info {
   font-size: 0.9rem;
   margin-bottom: 1rem;
+  padding-left: 0.5rem;
 }
 
 .character-detail__info .location {
