@@ -1,11 +1,14 @@
 import { EyeIcon } from "@heroicons/react/24/outline";
+import Loader from "./Loader";
 
-function CharacterList({ characters }) {
+function CharacterList({ characters, isLoading }) {
   return (
     <div className="characters-list">
-      {characters.map((character) => (
-        <Character key={character.id} character={character} />
-      ))}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        characters.map((character) => <Character key={character.id} character={character} />)
+      )}
     </div>
   );
 }
