@@ -10,6 +10,7 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
 
   //! Fetch Characters
   useEffect(() => {
@@ -31,6 +32,11 @@ function App() {
     fetchCharacters();
   }, [query]);
 
+  //! Select Character Handler
+  const handleSelectCharacter = (characterId) => {
+    setSelectedId((prevId) => (prevId === characterId ? null : characterId));
+  };
+
   return (
     <>
       {/* //! Navigation Bar */}
@@ -41,8 +47,13 @@ function App() {
       </Navbar>
       {/* //! Main Content Area */}
       <Main>
-        <CharacterList characters={characters} isLoading={isLoading} />
-        <CharacterDetail />
+        <CharacterList
+          characters={characters}
+          isLoading={isLoading}
+          onSelectCharacter={handleSelectCharacter}
+          selectedId={selectedId}
+        />
+        <CharacterDetail selectedId={selectedId} />
       </Main>
       <Toaster />
     </>

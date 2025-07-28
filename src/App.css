@@ -152,6 +152,14 @@
   margin-bottom: 1.5rem;
 }
 
+.character-detail__message {
+  flex: 1;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--slate-200);
+}
+
 .character-detail__img {
   width: 100%;
   height: auto;
