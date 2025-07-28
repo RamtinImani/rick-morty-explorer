@@ -9,15 +9,19 @@ import axios from "axios";
 function App() {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState("");
 
   //! Fetch Characters
   useEffect(() => {
     async function fetchCharacters() {
       try {
         setIsLoading(true);
-        const { data } = await axios.get("https://rickandmortyapi.com/api/character");
+        const { data } = await axios.get(
+          `https://rickandmortyapi.com/api/character/?name=${query}`
+        );
         setCharacters(data.results.slice(0, 5));
       } catch (error) {
+        setCharacters([]);
         toast.error(error.response.data.error);
       } finally {
         setIsLoading(false);
@@ -25,13 +29,13 @@ function App() {
     }
 
     fetchCharacters();
-  }, []);
+  }, [query]);
 
   return (
     <>
       {/* //! Navigation Bar */}
       <Navbar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <SearchResult searchResultNumber={characters.length} />
         <Favorites />
       </Navbar>

@@ -19,8 +19,17 @@ function Logo() {
   );
 }
 
-export function Search() {
-  return <input type="search" className="text-field" name="search" placeholder="Search" />;
+export function Search({ query, setQuery }) {
+  return (
+    <input
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      type="search"
+      className="text-field"
+      name="search"
+      placeholder="Search"
+    />
+  );
 }
 
 export function SearchResult({ searchResultNumber }) {
