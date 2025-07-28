@@ -1,5 +1,4 @@
 import { ArrowUpCircleIcon } from "@heroicons/react/24/outline";
-import { episodes } from "../../data/data";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -8,6 +7,7 @@ import Loader from "./Loader";
 function CharacterDetail({ selectedId }) {
   const [character, setCharacter] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [episodes, setEpisodes] = useState([]);
 
   //! Fetch Single Character
   useEffect(() => {
@@ -16,6 +16,13 @@ function CharacterDetail({ selectedId }) {
         setIsLoading(true);
         const { data } = await axios.get(`https://rickandmortyapi.com/api/character/${selectedId}`);
         setCharacter(data);
+
+        //! Fetch Episodes
+        const episodesId = data.episode.map((episode) => episode.split("/").at(-1));
+        const { data: episodesData } = await axios.get(
+          `https://rickandmortyapi.com/api/episode/${episodesId}`
+        );
+        setEpisodes([episodesData].flat().slice(0, 5));
       } catch (error) {
         toast.error(error.response.data.error);
       } finally {
