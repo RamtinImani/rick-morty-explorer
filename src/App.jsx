@@ -11,6 +11,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
   //! Fetch Characters
   useEffect(() => {
@@ -37,13 +38,21 @@ function App() {
     setSelectedId((prevId) => (prevId === characterId ? null : characterId));
   };
 
+  //! Add Character To Favorites Handler
+  const handleAddToFavorite = (character) => {
+    setFavorites((prevFav) => [...prevFav, character]);
+  };
+
+  //! Prevent duplicate addition of favorite character to favorites cart
+  const isExistInFavorite = favorites.map((favCharacter) => favCharacter.id).includes(selectedId);
+
   return (
     <>
       {/* //! Navigation Bar */}
       <Navbar>
         <Search query={query} setQuery={setQuery} />
         <SearchResult searchResultNumber={characters.length} />
-        <Favorites />
+        <Favorites favorites={favorites} />
       </Navbar>
       {/* //! Main Content Area */}
       <Main>
@@ -53,7 +62,11 @@ function App() {
           onSelectCharacter={handleSelectCharacter}
           selectedId={selectedId}
         />
-        <CharacterDetail selectedId={selectedId} />
+        <CharacterDetail
+          selectedId={selectedId}
+          onAddToFavorite={handleAddToFavorite}
+          isExistInFavorite={isExistInFavorite}
+        />
       </Main>
       <Toaster />
     </>

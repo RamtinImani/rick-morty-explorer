@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Loader from "./Loader";
 
-function CharacterDetail({ selectedId }) {
+function CharacterDetail({ selectedId, onAddToFavorite, isExistInFavorite }) {
   const [character, setCharacter] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [episodes, setEpisodes] = useState([]);
@@ -68,7 +68,13 @@ function CharacterDetail({ selectedId }) {
           </div>
 
           <div className="actions">
-            <button className="btn btn--primary">Add To Favorite</button>
+            {isExistInFavorite ? (
+              <p>Already Added To Favorites ❤️</p>
+            ) : (
+              <button onClick={() => onAddToFavorite(character)} className="btn btn--primary">
+                Add To Favorite
+              </button>
+            )}
           </div>
         </div>
       </div>

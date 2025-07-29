@@ -36,11 +36,11 @@ export function SearchResult({ searchResultNumber }) {
   return <div className="navbar__results">Found {searchResultNumber} Characters</div>;
 }
 
-export function Favorites() {
+export function Favorites({ favorites }) {
   return (
     <button className="heart">
       <HeartIcon className="icon" />
-      <span className="badge">0</span>
+      <span className="badge">{favorites.length}</span>
     </button>
   );
 }
