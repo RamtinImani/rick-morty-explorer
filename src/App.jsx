@@ -11,7 +11,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    () => JSON.parse(localStorage.getItem("favorites")) || []
+  );
 
   //! Fetch Characters
   useEffect(() => {
@@ -43,6 +45,11 @@ function App() {
       controller.abort();
     };
   }, [query]);
+
+  //! Save Favorite Characters
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   //! Select Character Handler
   const handleSelectCharacter = (characterId) => {
