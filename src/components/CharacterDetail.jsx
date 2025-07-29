@@ -47,61 +47,93 @@ function CharacterDetail({ selectedId, onAddToFavorite, isExistInFavorite }) {
 
   return (
     <div style={{ flex: 1 }}>
-      <div className="character-detail">
-        <img src={character.image} alt={character.name} className="character-detail__img" />
+      <CharacterSubInfo
+        character={character}
+        onAddToFavorite={onAddToFavorite}
+        isExistInFavorite={isExistInFavorite}
+      />
 
-        <div className="character-detail__info">
-          <h3 className="name">
-            <span>{character.gender === "Male" ? "🧔🏻‍♂️" : "👩🏻"}</span>
-            <span>&nbsp;{character.name}</span>
-          </h3>
-
-          <div className="info">
-            <span className={`status ${character.status === "Dead" ? "red" : ""}`}></span>
-            <span>&nbsp;{character.status} -</span>
-            <span>&nbsp;{character.species}</span>
-          </div>
-
-          <div className="location">
-            <p>Last Known Location:</p>
-            <p>{character.location.name}</p>
-          </div>
-
-          <div className="actions">
-            {isExistInFavorite ? (
-              <p>Already Added To Favorites ❤️</p>
-            ) : (
-              <button onClick={() => onAddToFavorite(character)} className="btn btn--primary">
-                Add To Favorite
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className="character-episodes">
-        <div className="title">
-          <h2>List Of Episodes:</h2>
-          <button>
-            <ArrowUpCircleIcon className="icon" />
-          </button>
-        </div>
-
-        <ul>
-          {episodes.map((episode, index) => (
-            <li key={episode.id}>
-              <div>
-                {String(index + 1).padStart(2, "0")} - {episode.episode} :{" "}
-                <strong>{episode.name}</strong>
-              </div>
-
-              <div className="badge badge--secondary">{episode.air_date}</div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <CharacterEpisodes episodes={episodes} />
     </div>
   );
 }
 
 export default CharacterDetail;
+
+function CharacterSubInfo({ character, onAddToFavorite, isExistInFavorite }) {
+  return (
+    <div className="character-detail">
+      <img src={character.image} alt={character.name} className="character-detail__img" />
+
+      <div className="character-detail__info">
+        <h3 className="name">
+          <span>{character.gender === "Male" ? "🧔🏻‍♂️" : "👩🏻"}</span>
+          <span>&nbsp;{character.name}</span>
+        </h3>
+
+        <div className="info">
+          <span className={`status ${character.status === "Dead" ? "red" : ""}`}></span>
+          <span>&nbsp;{character.status} -</span>
+          <span>&nbsp;{character.species}</span>
+        </div>
+
+        <div className="location">
+          <p>Last Known Location:</p>
+          <p>{character.location.name}</p>
+        </div>
+
+        <div className="actions">
+          {isExistInFavorite ? (
+            <p>Already Added To Favorites ❤️</p>
+          ) : (
+            <button onClick={() => onAddToFavorite(character)} className="btn btn--primary">
+              Add To Favorite
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CharacterEpisodes({ episodes }) {
+  const [sortBy, setSortBy] = useState(true); //! true ==> ascending , false ==> descending
+
+  let sortedEpisodes;
+  if (sortBy) {
+    sortedEpisodes = [...episodes].sort((a, b) => {
+      return new Date(a.created) - new Date(b.created);
+    });
+  } else {
+    sortedEpisodes = [...episodes].sort((a, b) => {
+      return new Date(b.created) - new Date(a.created);
+    });
+  }
+
+  return (
+    <div className="character-episodes">
+      <div className="title">
+        <h2>List Of Episodes:</h2>
+        <button
+          className={`${sortBy ? "rotate-up" : "rotate-down"}`}
+          onClick={() => setSortBy((prevSortBy) => !prevSortBy)}
+        >
+          <ArrowUpCircleIcon className="icon" />
+        </button>
+      </div>
+
+      <ul>
+        {sortedEpisodes.map((episode, index) => (
+          <li key={episode.id}>
+            <div>
+              {String(index + 1).padStart(2, "0")} - {episode.episode} :{" "}
+              <strong>{episode.name}</strong>
+            </div>
+
+            <div className="badge badge--secondary">{episode.air_date}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
