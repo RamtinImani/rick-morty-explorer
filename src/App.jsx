@@ -57,13 +57,18 @@ function App() {
   //! Prevent duplicate addition of favorite character to favorites cart
   const isExistInFavorite = favorites.map((favCharacter) => favCharacter.id).includes(selectedId);
 
+  //! Delete Favorite Character Handler
+  const handleDeleteFavorite = (characterId) => {
+    setFavorites((prevFav) => prevFav.filter((favCharacter) => favCharacter.id !== characterId));
+  };
+
   return (
     <>
       {/* //! Navigation Bar */}
       <Navbar>
         <Search query={query} setQuery={setQuery} />
         <SearchResult searchResultNumber={characters.length} />
-        <Favorites favorites={favorites} />
+        <Favorites favorites={favorites} onDeleteFavorite={handleDeleteFavorite} />
       </Navbar>
       {/* //! Main Content Area */}
       <Main>

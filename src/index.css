@@ -93,6 +93,7 @@ a {
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 1px 1px 50px var(--slate-600);
+  z-index: 100;
 }
 
 .modal__header {
@@ -128,5 +129,6 @@ a {
   height: 100vh;
   position: fixed;
   inset: 0;
+  z-index: 10;
   background-color: rgba(63, 69, 76, 0.8);
 }
