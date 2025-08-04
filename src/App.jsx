@@ -5,23 +5,16 @@ import CharacterList from "./components/CharacterList";
 import Navbar, { Favorites, Search, SearchResult } from "./components/Navbar";
 import { Toaster } from "react-hot-toast";
 import useCharacters from "./hooks/useCharacters";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   const [query, setQuery] = useState("");
-  //! Fetch Characters custom hook
   const { isLoading, characters } = useCharacters(
     "https://rickandmortyapi.com/api/character/?name",
     query
   );
   const [selectedId, setSelectedId] = useState(null);
-  const [favorites, setFavorites] = useState(
-    () => JSON.parse(localStorage.getItem("favorites")) || []
-  );
-
-  //! Save Favorite Characters
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+  const [favorites, setFavorites] = useLocalStorage("Favorites", []);
 
   //! Select Character Handler
   const handleSelectCharacter = (characterId) => {
