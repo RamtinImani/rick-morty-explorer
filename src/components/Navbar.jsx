@@ -18,7 +18,7 @@ function Logo() {
   return (
     <div>
       <a href="#" className="navbar__logo">
-        <img className="logo" src="../../public/logo.png" alt="Rick & Morty Logo" />
+        <img className="navbar__logo--img" src="../../public/logo.png" alt="Rick & Morty Logo" />
         Rick & Morty
       </a>
     </div>
@@ -39,7 +39,7 @@ export function Search({ query, setQuery }) {
 }
 
 export function SearchResult({ searchResultNumber }) {
-  return <div className="navbar__results">Found {searchResultNumber} Characters</div>;
+  return <div className="navbar__results">{searchResultNumber} Characters Found</div>;
 }
 
 export function Favorites({ favorites, onDeleteFavorite }) {
@@ -57,7 +57,7 @@ export function Favorites({ favorites, onDeleteFavorite }) {
         ))}
       </Modal>
 
-      <button className="heart" onClick={() => setIsOpen((prevOpen) => !prevOpen)}>
+      <button className="navbar__heart" onClick={() => setIsOpen((prevOpen) => !prevOpen)}>
         <HeartIcon className="icon" />
         <span className="badge">{favorites.length}</span>
       </button>

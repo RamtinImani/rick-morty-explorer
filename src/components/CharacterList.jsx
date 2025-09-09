@@ -3,7 +3,7 @@ import Loader from "./Loader";
 
 function CharacterList({ characters, isLoading, onSelectCharacter, selectedId }) {
   return (
-    <div className="characters-list">
+    <div className="characters">
       {isLoading ? (
         <Loader />
       ) : (
@@ -23,8 +23,8 @@ export default CharacterList;
 
 export function Character({ character, children }) {
   return (
-    <div className="list__item">
-      <img src={character.image} alt={character.name} />
+    <div className="characters__item">
+      <img src={character.image} alt={character.name} className="characters__item--img" />
 
       <CharacterName character={character} />
       <CharacterInfo character={character} />
@@ -36,7 +36,7 @@ export function Character({ character, children }) {
 
 function CharacterName({ character }) {
   return (
-    <h3 className="name">
+    <h3 className="characters__item--name">
       <span>{character.gender === "Male" ? "🧔🏻‍♂️" : "👩🏻"}</span>
       <span>&nbsp;{character.name}</span>
     </h3>
@@ -45,8 +45,8 @@ function CharacterName({ character }) {
 
 function CharacterInfo({ character }) {
   return (
-    <div className="list-item__info info">
-      <span className={`status ${character.status === "Dead" ? "red" : ""}`}></span>
+    <div className="characters__item--info">
+      <span className={`characters__status ${character.status === "Dead" ? "red" : ""}`}></span>
       <span>&nbsp;{character.status}&nbsp;</span>
       <span>&nbsp;- &nbsp;{character.species}</span>
     </div>

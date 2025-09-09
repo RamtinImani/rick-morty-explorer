@@ -42,7 +42,7 @@ function CharacterDetail({ selectedId, onAddToFavorite, isExistInFavorite }) {
   }
 
   if (!character || !selectedId) {
-    return <p className="character-detail__message">Please Select One Character</p>;
+    return <p className="character__detail--message">Please Select One Character</p>;
   }
 
   return (
@@ -62,29 +62,29 @@ export default CharacterDetail;
 
 function CharacterSubInfo({ character, onAddToFavorite, isExistInFavorite }) {
   return (
-    <div className="character-detail">
-      <img src={character.image} alt={character.name} className="character-detail__img" />
+    <div className="character__detail">
+      <img src={character.image} alt={character.name} className="character__detail--img" />
 
-      <div className="character-detail__info">
-        <h3 className="name">
+      <div className="character__detail--data">
+        <h3 className="character__detail--name">
           <span>{character.gender === "Male" ? "🧔🏻‍♂️" : "👩🏻"}</span>
           <span>&nbsp;{character.name}</span>
         </h3>
 
-        <div className="info">
-          <span className={`status ${character.status === "Dead" ? "red" : ""}`}></span>
+        <div className="character__detail--info">
+          <span className={`characters__status ${character.status === "Dead" ? "red" : ""}`}></span>
           <span>&nbsp;{character.status} -</span>
           <span>&nbsp;{character.species}</span>
         </div>
 
-        <div className="location">
+        <div className="character__detail--location">
           <p>Last Known Location:</p>
           <p>{character.location.name}</p>
         </div>
 
-        <div className="actions">
+        <div className="character__detail--actions">
           {isExistInFavorite ? (
-            <p>Already Added To Favorites ❤️</p>
+            <p className="character__detail--actions-text">Already Added To Favorites ❤️</p>
           ) : (
             <button onClick={() => onAddToFavorite(character)} className="btn btn--primary">
               Add To Favorite
@@ -111,9 +111,9 @@ function CharacterEpisodes({ episodes }) {
   }
 
   return (
-    <div className="character-episodes">
-      <div className="title">
-        <h2>List Of Episodes:</h2>
+    <div className="character__episodes">
+      <div className="character__episodes--header">
+        <h2 className="character__episodes--title">List Of Episodes:</h2>
         <button
           className={`${sortBy ? "rotate-up" : "rotate-down"}`}
           onClick={() => setSortBy((prevSortBy) => !prevSortBy)}
@@ -124,7 +124,7 @@ function CharacterEpisodes({ episodes }) {
 
       <ul>
         {sortedEpisodes.map((episode, index) => (
-          <li key={episode.id}>
+          <li key={episode.id} className="character__episodes--item">
             <div>
               {String(index + 1).padStart(2, "0")} - {episode.episode} :{" "}
               <strong>{episode.name}</strong>
