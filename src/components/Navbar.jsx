@@ -16,8 +16,11 @@ export default Navbar;
 
 function Logo() {
   return (
-    <div className="navbar__logo">
-      <a href="#">🎭 Rick & Morty</a>
+    <div>
+      <a href="#" className="navbar__logo">
+        <img className="logo" src="../../public/logo.png" alt="Rick & Morty Logo" />
+        Rick & Morty
+      </a>
     </div>
   );
 }

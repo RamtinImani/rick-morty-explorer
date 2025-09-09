@@ -16,7 +16,15 @@
   margin-bottom: 1rem;
 }
 
+.logo {
+  width: 2rem;
+  height: 2rem;
+}
+
 .navbar__logo {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
   color: var(--slate-300);
   font-weight: 700;
 }
