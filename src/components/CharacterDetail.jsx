@@ -84,7 +84,7 @@ function CharacterSubInfo({ character, onAddToFavorite, isExistInFavorite }) {
 
         <div className="character__detail--actions">
           {isExistInFavorite ? (
-            <p className="character__detail--actions-text">Already Added To Favorites ❤️</p>
+            <p className="character__detail--actions-text">Added to favorites ❤️</p>
           ) : (
             <button onClick={() => onAddToFavorite(character)} className="btn btn--primary">
               Add To Favorite

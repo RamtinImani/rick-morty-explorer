@@ -39,7 +39,11 @@ export function Search({ query, setQuery }) {
 }
 
 export function SearchResult({ searchResultNumber }) {
-  return <div className="navbar__results">{searchResultNumber} Characters Found</div>;
+  return (
+    <div className="navbar__results">
+      <span className="navbar__results--number">{searchResultNumber}</span> Characters Found
+    </div>
+  );
 }
 
 export function Favorites({ favorites, onDeleteFavorite }) {
