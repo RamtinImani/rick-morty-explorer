@@ -5,15 +5,16 @@ function Modal({ title, onOpen, open, children }) {
 
   return (
     <>
-      <div onClick={() => onOpen(false)} className="modal__backdrop"></div>
-      <div className="modal">
-        <div className="modal__header">
-          <h2 className="modal__header--title">{title}</h2>
-          <button onClick={() => onOpen(false)}>
-            <XCircleIcon className="icon modal__header--close" />
-          </button>
+      <div onClick={() => onOpen(false)} className="modal__backdrop">
+        <div className="modal" onClick={(e) => e.stopPropagation()}>
+          <div className="modal__header">
+            <h2 className="modal__header--title">{title}</h2>
+            <button onClick={() => onOpen(false)}>
+              <XCircleIcon className="icon modal__header--close" />
+            </button>
+          </div>
+          {children}
         </div>
-        {children}
       </div>
     </>
   );

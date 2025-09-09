@@ -48,13 +48,17 @@ export function Favorites({ favorites, onDeleteFavorite }) {
   return (
     <>
       <Modal title="Favorite Characters" onOpen={setIsOpen} open={isOpen}>
-        {favorites.map((favCharacter) => (
-          <Character key={favCharacter.id} character={favCharacter}>
-            <button className="icon red" onClick={() => onDeleteFavorite(favCharacter.id)}>
-              <TrashIcon />
-            </button>
-          </Character>
-        ))}
+        {favorites.length === 0 ? (
+          <p className="modal__message">No favorite characters have been added yet.</p>
+        ) : (
+          favorites.map((favCharacter) => (
+            <Character key={favCharacter.id} character={favCharacter}>
+              <button className="icon red" onClick={() => onDeleteFavorite(favCharacter.id)}>
+                <TrashIcon />
+              </button>
+            </Character>
+          ))
+        )}
       </Modal>
 
       <button className="navbar__heart" onClick={() => setIsOpen((prevOpen) => !prevOpen)}>
