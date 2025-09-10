@@ -43,3 +43,21 @@ You can try the live version of Rick-Morty-Explorer here:
 
 ![preview image](/preview.png)
 
+## ⚡ Getting Started
+
+Follow these steps to run Rick-Morty-Explorer locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/RamtinImani/rick-morty-explorer.git
+
+# Navigate into the project directory
+cd rick-and-morty
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+
+# Once the development server is running, open the localhost link in your browser to start using Light Notes.
