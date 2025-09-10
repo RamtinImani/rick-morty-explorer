@@ -37,7 +37,7 @@ This project was a practical exercise in combining all these concepts to build a
 ## 🌐 Online Preview
 
 You can try the live version of Rick-Morty-Explorer here:
-👉 [**url**](link)
+👉 [**https://rick-morty-explore.netlify.app/**](https://rick-morty-explore.netlify.app/)
 
 ## 📸 Screenshots
 
