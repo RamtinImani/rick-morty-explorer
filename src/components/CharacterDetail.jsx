@@ -22,7 +22,7 @@ function CharacterDetail({ selectedId, onAddToFavorite, isExistInFavorite }) {
         const { data: episodesData } = await axios.get(
           `https://rickandmortyapi.com/api/episode/${episodesId}`
         );
-        setEpisodes([episodesData].flat().slice(0, 5));
+        setEpisodes([episodesData].flat());
       } catch (error) {
         toast.error(error.response.data.error);
       } finally {
@@ -46,7 +46,7 @@ function CharacterDetail({ selectedId, onAddToFavorite, isExistInFavorite }) {
   }
 
   return (
-    <div style={{ flex: 1 }}>
+    <div className="character__detail--container">
       <CharacterSubInfo
         character={character}
         onAddToFavorite={onAddToFavorite}
@@ -122,7 +122,7 @@ function CharacterEpisodes({ episodes }) {
         </button>
       </div>
 
-      <ul>
+      <ul className="character__episodes--wrapper">
         {sortedEpisodes.map((episode, index) => (
           <li key={episode.id} className="character__episodes--item">
             <div>

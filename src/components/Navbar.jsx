@@ -19,7 +19,7 @@ function Logo() {
     <div>
       <a href="#" className="navbar__logo">
         <img className="navbar__logo--img" src="../../public/logo.png" alt="Rick & Morty Logo" />
-        Rick & Morty
+        <span className="navbar__logo--text">Rick & Morty</span>
       </a>
     </div>
   );
@@ -41,7 +41,8 @@ export function Search({ query, setQuery }) {
 export function SearchResult({ searchResultNumber }) {
   return (
     <div className="navbar__results">
-      <span className="navbar__results--number">{searchResultNumber}</span> Characters Found
+      <span className="navbar__results--number">{searchResultNumber}</span>
+      <span className="navbar__results--text">Characters Found</span>
     </div>
   );
 }
