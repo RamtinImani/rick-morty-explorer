@@ -18,7 +18,7 @@ function Logo() {
   return (
     <div>
       <a href="#" className="navbar__logo">
-        <img className="navbar__logo--img" src="../../public/logo.png" alt="Rick & Morty Logo" />
+        <img className="navbar__logo--img" src="/public/logo.png" alt="Rick & Morty Logo" />
         <span className="navbar__logo--text">Rick & Morty</span>
       </a>
     </div>
